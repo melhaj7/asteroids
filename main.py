@@ -42,11 +42,17 @@ def main():
         for obj in updatable:
             obj.update(dt)
 
-        for obj in asteroids:
-            if obj.collision_check(player):
+        for asteroid in asteroids:
+            if asteroid.collision_check(player):
                 print("Game Over!")
                 running = False
                 break
+
+        for asteroid in asteroids:
+            for shot in shots:
+                if asteroid.collision_check(shot):
+                    asteroid.kill()
+                    shot.kill()
 
         pygame.display.flip()
 
